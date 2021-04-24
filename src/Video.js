@@ -2,11 +2,21 @@ import React, { useRef, useState } from "react";
 import "./Video.css";
 import VideoFooter from "./VideoFooter";
 import VideoSidebar from "./VideoSidebar";
+import tiktok from "./tiktok.png";
 
 function Video({ url, chanel, description, song, likes, messages, shares }) {
   const [play, setPlay] = useState(false);
   const videoRef = useRef(null);
+  //1. description :Flying low through palm trees and down towards a tropical beach. Lombok, Indonesia.
+  //title: Flying Through Palm Trees Along Beach
+  //chanel: videvo
+  // ocean: https://cdn.videvo.net/videvo_files/video/free/2017-08/small_watermarked/170724_15_Setangibeach_preview.webm
 
+  //2. Sunset At Venice Beach LA
+  //Sun setting on the ocean at Venice Beach, LA.
+  // sunset: https://cdn.videvo.net/videvo_files/video/free/2019-01/small_watermarked/181015_13_Venice%20Beach%20Drone_25_preview.webm
+
+  //3.
   const onVideoPress = () => {
     if (play) {
       videoRef.current.pause();
@@ -19,12 +29,14 @@ function Video({ url, chanel, description, song, likes, messages, shares }) {
   return (
     <div className="video">
       {/* <h1>hello i am video</h1> */}
+      <img className="video__logo" src={tiktok} alt="tiktok logo" />
+
       <video
         className="video__player"
         loop
         onClick={onVideoPress}
         ref={videoRef}
-        src="https://instagram.fbom22-1.fna.fbcdn.net/v/t50.2886-16/169043200_288583709598965_997202850636791518_n.mp4?_nc_ht=instagram.fbom22-1.fna.fbcdn.net&amp;_nc_cat=105&amp;_nc_ohc=aOBTAj7TGkoAX94ESVc&amp;edm=APfKNqwBAAAA&amp;ccb=7-4&amp;oe=6080D446&amp;oh=5f9cecf5c0ea7018b8996f1d54862db1&amp;_nc_sid=74f7ba"
+        src={url}
       />
       {/* VideoFooter */}
       <VideoFooter chanel={chanel} description={description} song={song} />

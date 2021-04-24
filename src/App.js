@@ -1,16 +1,19 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import Video from "./Video";
-import db from "./firebase";
+import axios from "./axios";
 
 function App() {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    db.collection("videos").onSnapshot((snapshot) =>
-      setVideos(snapshot.docs.map((doc) => doc.data()))
-    );
-  }, [videos]);
+    async function fetchPosts() {
+      const response = await axios.get("/v2/posts");
+      setVideos(response.data);
+      return response;
+    }
+    fetchPosts();
+  }, []);
 
   console.log(videos);
 
